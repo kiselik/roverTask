@@ -13,7 +13,7 @@ public class GroundVisor {
 
     // throws означает, что этот класс может найти исключения типа OutOfGroundException
     // и только его может выбросить данный момент(незаявленные типы не может?)
-    CellState checkCell(GroundCell cell) throws OutOfGroundException {
+     CellState checkCell(GroundCell cell) throws OutOfGroundException {
         //вспомогательные перемменные, чтобы не грузить if
 
         int tmp_x = cell.getPoint().getX();
