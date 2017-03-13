@@ -8,7 +8,6 @@ public class Ground {
         column = cur_column;
         row = cur_row;
         ground = new GroundCell[column * row];
-
     }
 
     void initialize(GroundCell... cells) {
@@ -24,14 +23,23 @@ public class Ground {
         }
     }
 
-   /* GroundCell getCell(Point cur_point) {
-        //для пользователя покажем +1 к этому результату
-        return ground[cur_point.getX()*column+cur_point.getY()];
-    }*/
-
-    GroundCell getCell(int cur_x, int cur_y) {
-        return ground[cur_x * column + cur_y];
+   GroundCell getCell(Point cur_point) throws OutOfGroundException {
+        return getCell(cur_point.getX(), cur_point.getY());
     }
 
+    GroundCell getCell(int cur_x, int cur_y) throws OutOfGroundException {
+        GroundCell tmp = ground[cur_x * column + cur_y];
+        if ((cur_x < 0) || (cur_y < 0) || (cur_y > column) || (cur_x > row)) {
+            throw new OutOfGroundException();
+        } else
+            return tmp;
+    }
 
+    public int getColumn() {
+        return column;
+    }
+
+    public int getRow() {
+        return row;
+    }
 }

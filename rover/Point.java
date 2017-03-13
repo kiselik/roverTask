@@ -38,6 +38,14 @@ public class Point {
             return false;
     }
 
+    void changeX(int dX){
+        x+=dX;
+    }
+
+    void changeY(int dY){
+        x+=dY;
+    }
+
     @Override
     public int hashCode() {
         return super.hashCode();

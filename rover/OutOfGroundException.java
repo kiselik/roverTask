@@ -5,9 +5,9 @@ package netcracker.intensive.rover;
  */
 public class OutOfGroundException extends Exception {
 
-    OutOfGroundException(String message) {
+    OutOfGroundException() {
         //возможно, сюда добавить взлет
-        super(message);
+        super("ты чуть не упал! Какой кошмар!");
     }
 
 
