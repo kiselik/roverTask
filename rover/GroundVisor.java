@@ -10,20 +10,25 @@ public class GroundVisor {
         ground = tmp_ground;
     }
 
+    Ground getGround(){
+        return ground;
+    }
+
     // throws означает, что этот класс может выбросить исключения типа OutOfGroundException
     // и только его может выбросить данный момент(незаявленные типы не может?)
-    CellState hasObstacles(GroundCell cell) throws OutOfGroundException {
-        //вспомогательные перемменные, чтобы не грузить if
-        return cell.getState();
-       /* int tmp_x = cell.getPoint().getX();
-        int tmp_y = cell.getPoint().getY();
-        Point tmp = new Point(tmp_x, tmp_y);
-        if ((tmp.getX() < 0) || (tmp.getX() > ground.getRow()) || (tmp.getY() < 0) || (tmp.getY() > ground.getColumn())) {
-            throw new OutOfGroundException();
-        } else {
-            return cell.getState();
-        }*/
+   boolean hasObstacles(GroundCell cell) throws OutOfGroundException {
+      /*  //попробуем получить ячейку с такими координатами. Если вышли за диапазон, кинем Exception
+        GroundCell tmp=ground.getCell(cell.getPoint());
+        return tmp.getState();*/
+      return hasObstacles(cell.getPoint());
+    }
 
+    boolean hasObstacles(Point point) throws OutOfGroundException {
+        GroundCell tmp=ground.getCell(point);
+        if (tmp.getState()==CellState.FREE)
+            return true;
+        else
+            return false;
     }
 
 }

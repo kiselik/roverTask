@@ -15,6 +15,10 @@ public class GroundCell {
         current_point = new Point(cur_x, cur_y);
     }
 
+    void SetPoint(Point point) {
+        current_point = point;
+    }
+
     CellState getState() {
         return state;
     }

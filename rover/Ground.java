@@ -23,6 +23,7 @@ public class Ground {
         }
     }
 
+    //пытаемся найти ячейку с заданными координатами на поле
    GroundCell getCell(Point cur_point) throws OutOfGroundException {
         return getCell(cur_point.getX(), cur_point.getY());
     }
