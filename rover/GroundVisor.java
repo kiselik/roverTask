@@ -6,11 +6,11 @@ public class GroundVisor {
     private Ground ground;
 
 
-    GroundVisor(Ground tmp_ground) {
+    public GroundVisor(Ground tmp_ground) {
         ground = tmp_ground;
     }
 
-    Ground getGround(){
+   Ground getGround(){
         return ground;
     }
 
@@ -24,11 +24,12 @@ public class GroundVisor {
     }
 
     boolean hasObstacles(Point point) throws OutOfGroundException {
-        GroundCell tmp=ground.getCell(point);
+      /*  //GroundCell tmp=ground.getCell(point);
         if (tmp.getState()==CellState.FREE)
             return true;
         else
-            return false;
+            return false;*/
+      return true;
     }
 
 }

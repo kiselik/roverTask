@@ -1,5 +1,6 @@
 package netcracker.intensive.rover.programmable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RoverProgram {
@@ -11,14 +12,19 @@ public class RoverProgram {
     public static final String LIFT = "lift";
     public static final String LAND = "land";
 
-
-    private HashMap<String, Object> config = new HashMap<>();
+    private ArrayList<RoverProgram> commands=new ArrayList();
+    private HashMap<String, Object> configs = new HashMap<>();
 
     void memoriseConfig(String Key, Object Value){
-        config.put(Key,Value);
+        configs.put(Key,Value);
+    }
+
+    boolean getConfig(String Key){
+        return (boolean)configs.get(Key);
+    }
+
+    void memoriseCommand(String command){
 
     }
-    HashMap<String, Object> getConfig() {
-        return config;
-    }
+
 }

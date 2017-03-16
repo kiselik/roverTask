@@ -8,7 +8,7 @@ import java.util.Collection;
 public class SimpleRoverStatsModule implements RoverStatsModule {
     private ArrayList<Point> visitedCells;
 
-    SimpleRoverStatsModule() {
+    public SimpleRoverStatsModule() {
         visitedCells = new ArrayList<Point>();
     }
 

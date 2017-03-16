@@ -1,8 +1,9 @@
 package netcracker.intensive.rover;
 
+import netcracker.intensive.rover.command.TurnCommand;
 import netcracker.intensive.rover.constants.Direction;
 
-public class Rover implements Moveable, Landable, Liftable, Turnable {
+public class Rover implements Moveable,Landable, Liftable, Turnable{
     private GroundCell current_cell;
     private GroundVisor visor;
     private Direction current_direction;
