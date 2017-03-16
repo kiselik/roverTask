@@ -2,6 +2,8 @@ package netcracker.intensive.rover;
 
 import netcracker.intensive.rover.constants.CellState;
 
+import static netcracker.intensive.rover.constants.CellState.FREE;
+
 public class GroundCell {
 
     private Point current_point;

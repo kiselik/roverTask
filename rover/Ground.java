@@ -2,38 +2,44 @@ package netcracker.intensive.rover;
 
 public class Ground {
     private int column, row;
-    private static GroundCell[] ground;
+    private GroundCell[][] landscape;
 
     Ground(int cur_row, int cur_column) {
         column = cur_column;
         row = cur_row;
-        ground = new GroundCell[column * row];
+        landscape = new GroundCell[row][column];
     }
 
+    //ЗАПОМНИ!!!!!!
+    //х- column
+    //y-row
     void initialize(GroundCell... cells) {
-        if (cells.length != 0) {
-            for (int i = 0; i < cells.length; i++) {
-                ground[i] = cells[i];
-                //по номеру ячейки вычисляем координаты
-                int x = i / column;
-                int y = i - 1;
-                cells[i].SetPoint(x, y);
-            }
+        if (cells.length < row * column)
+            throw new IllegalArgumentException();
 
+        if (cells.length != 0) {
+
+            for (int i = 0; i < row; i++)
+                for (int j = 0; j < column; j++) {
+                    landscape[i][j] = cells[i * row + j];
+                }
         }
     }
 
-    //пытаемся найти ячейку с заданными координатами на поле
-   GroundCell getCell(Point cur_point) throws OutOfGroundException {
+/*    //пытаемся найти ячейку с заданными координатами на поле
+    GroundCell getCell(Point cur_point) throws OutOfGroundException {
         return getCell(cur_point.getX(), cur_point.getY());
-    }
+    }*/
 
+    //x-column
+    //y-row
     GroundCell getCell(int cur_x, int cur_y) throws OutOfGroundException {
-        GroundCell tmp = ground[cur_x * column + cur_y];
-        if ((cur_x < 0) || (cur_y < 0) || (cur_y > column) || (cur_x > row)) {
+
+        try {
+            return landscape[cur_y][cur_x];
+        } catch (IndexOutOfBoundsException e) {
             throw new OutOfGroundException();
-        } else
-            return tmp;
+        }
     }
 
     public int getColumn() {
