@@ -13,19 +13,19 @@ public class GroundCell {
         state = cur_state;
     }
 
-    void SetPoint(int cur_x, int cur_y) {
+  /*  void SetPoint(int cur_x, int cur_y) {
         current_point = new Point(cur_x, cur_y);
     }
 
     void SetPoint(Point point) {
         current_point = point;
-    }
+    }*/
 
     CellState getState() {
         return state;
     }
 
-    Point getPoint() {
+ /*   Point getPoint() {
         return current_point;
-    }
+    }*/
 }
