@@ -10,7 +10,7 @@ public class Point {
         y = 0;
     }
 
-   public Point(int cur_x, int cur_y) {
+    Point(int cur_x, int cur_y) {
         x = cur_x;
         y = cur_y;
     }
@@ -21,6 +21,16 @@ public class Point {
 
     int getY() {
         return y;
+    }
+
+    Point(Point newPoint){
+        x=newPoint.getX();
+        y=newPoint.getY();
+    }
+
+    void setNewPoint(Point newPoint){
+        x=newPoint.getX();
+        y=newPoint.getY();
     }
 
     @Override
@@ -43,7 +53,7 @@ public class Point {
     }
 
     void changeY(int dY){
-        x+=dY;
+        y+=dY;
     }
 
     @Override
