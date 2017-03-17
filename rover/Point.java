@@ -23,6 +23,16 @@ public class Point {
         return y;
     }
 
+    Point(Point newPoint){
+        x=newPoint.getX();
+        y=newPoint.getY();
+    }
+
+    void setNewPoint(Point newPoint){
+        x=newPoint.getX();
+        y=newPoint.getY();
+    }
+
     @Override
     public boolean equals(Object obj) {
 
@@ -43,7 +53,7 @@ public class Point {
     }
 
     void changeY(int dY){
-        x+=dY;
+        y+=dY;
     }
 
     @Override
