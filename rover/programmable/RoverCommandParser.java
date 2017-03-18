@@ -2,16 +2,14 @@
 package netcracker.intensive.rover.programmable;
 
 import netcracker.intensive.rover.Point;
-import netcracker.intensive.rover.command.LandCommand;
-import netcracker.intensive.rover.command.LiftCommand;
-import netcracker.intensive.rover.command.MoveCommand;
-import netcracker.intensive.rover.command.TurnCommand;
+import netcracker.intensive.rover.command.*;
 import netcracker.intensive.rover.constants.Direction;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Collection;
 
 public class RoverCommandParser {
     private String path;
@@ -56,8 +54,7 @@ public class RoverCommandParser {
         String[] command;
         String tmp;
         try  {
-            ///*включили буферезированное считывания из файла,если смогли
-
+            ///включили буферезированное считывания из файла,если смогли
             BufferedReader reader = new BufferedReader(new FileReader(this.getClass().getResource(path).getFile()));
             //пока файл не пуст и пока текущая строка-не разделитель "==="
             //String tmp=reader.readLine();
@@ -90,6 +87,17 @@ public class RoverCommandParser {
                             break;
                     }
                 }
+            }
+            //еслилогирование включено и файл не был изначально пустым,
+            // перепишем найденные комманды через логированные команды
+            if((program.getSettings().size()!=0)&&(boolean)program.getSettings().get(RoverProgram.LOG))
+            {
+                RoverProgram new_log_program=new RoverProgram();
+                for(RoverCommand index: program.getCommands())
+                {
+                     new_log_program.memoriseCommand(new LoggingCommand(index));
+                }
+                program=new_log_program;
             }
             reader.close();
         } catch (NullPointerException ex) {
