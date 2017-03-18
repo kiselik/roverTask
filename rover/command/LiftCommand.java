@@ -5,7 +5,7 @@ import netcracker.intensive.rover.Rover;
 public class LiftCommand implements RoverCommand {
     private Rover rover;
 
-    LiftCommand(Rover cur_rover) {
+    public LiftCommand(Rover cur_rover) {
         rover = cur_rover;
     }
 
@@ -17,5 +17,9 @@ public class LiftCommand implements RoverCommand {
     @Override
     public String toString() {
         return "Rover lifted";
+    }
+    @Override
+    public boolean equals(Object obj) {
+        return this.toString().equals(obj.toString());
     }
 }

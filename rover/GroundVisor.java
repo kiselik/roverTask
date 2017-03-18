@@ -10,7 +10,7 @@ public class GroundVisor {
         ground = tmp_ground;
     }
 
-    Ground getGround(){
+    public Ground getGround(){
         return ground;
     }
 

@@ -9,7 +9,7 @@ public class LandCommand implements RoverCommand {
     private Point position;
     private Direction direction;
 
-    LandCommand(Rover cur_rover, Point cur_position, Direction cur_direction) {
+    public LandCommand(Rover cur_rover, Point cur_position, Direction cur_direction) {
         rover = cur_rover;
         position = cur_position;
         direction = cur_direction;
@@ -23,5 +23,9 @@ public class LandCommand implements RoverCommand {
     @Override
     public String toString() {
         return "Land at ("+position.getX()+", "+position.getY()+") heading "+direction;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        return this.toString().equals(obj.toString());
     }
 }

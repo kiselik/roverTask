@@ -6,10 +6,10 @@ package netcracker.intensive.rover.programmable;
  */
 import java.io.IOException;
 
-public class RoverCommandParserException extends Exception{
+public class RoverCommandParserException extends RuntimeException{
     RoverCommandParserException(Exception e) {
         super("возникли проблемы при работе с файлом",e);
         printStackTrace();
-        System.exit(-1);
+        //System.exit(-1);
     }
 }

@@ -1,30 +1,31 @@
 package netcracker.intensive.rover.programmable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import netcracker.intensive.rover.command.RoverCommand;
+import netcracker.intensive.rover.constants.Direction;
+
+import java.util.*;
 
 public class RoverProgram {
     public static final String LOG = "log";
     public static final String STATS = "stats";
     public static final String SEPARATOR = "===";
-    public static final String TURN = "turn";
-    public static final String MOVE= "move";
-    public static final String LIFT = "lift";
-    public static final String LAND = "land";
 
-    private ArrayList<RoverProgram> commands=new ArrayList();
-    private HashMap<String, Object> configs = new HashMap<>();
+    private ArrayList<RoverCommand> commands = new ArrayList<>();
+    private HashMap<String, Object> settings = new HashMap<>();
 
-    void memoriseConfig(String Key, Object Value){
-        configs.put(Key,Value);
+    void memoriseConfig(String Key, Object Value) {
+        settings.put(Key, Value);
     }
 
-    boolean getConfig(String Key){
-        return (boolean)configs.get(Key);
+    HashMap<String, Object> getSettings() {
+        return settings;
     }
 
-    void memoriseCommand(String command){
-
+    void memoriseCommand(RoverCommand command) {
+        commands.add(command);
     }
 
+    Collection<RoverCommand> getCommands() {
+        return commands;
+    }
 }

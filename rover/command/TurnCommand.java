@@ -7,7 +7,7 @@ public class TurnCommand implements RoverCommand {
     private Rover rover;
     private Direction direction;
 
-    TurnCommand(Rover cur_rover, Direction cur_direction) {
+    public TurnCommand(Rover cur_rover, Direction cur_direction) {
         rover = cur_rover;
         direction = cur_direction;
     }
@@ -20,5 +20,10 @@ public class TurnCommand implements RoverCommand {
     @Override
     public String toString() {
         return "Heading "+direction;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.toString().equals(obj.toString());
     }
 }

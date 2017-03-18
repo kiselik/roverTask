@@ -14,7 +14,7 @@ public class Rover implements Moveable, Landable, Liftable, Turnable {
 
     }
 
-    Point getCurrentPosition() {
+   public Point getCurrentPosition() {
         return current_point;
     }
 
