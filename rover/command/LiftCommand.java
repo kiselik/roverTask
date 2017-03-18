@@ -13,4 +13,9 @@ public class LiftCommand implements RoverCommand {
     public void execute() {
         rover.lift();
     }
+
+    @Override
+    public String toString() {
+        return "Rover lifted";
+    }
 }
