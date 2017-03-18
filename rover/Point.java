@@ -10,16 +10,16 @@ public class Point {
         y = 0;
     }
 
-    Point(int cur_x, int cur_y) {
+    public Point(int cur_x, int cur_y) {
         x = cur_x;
         y = cur_y;
     }
 
-    int getX() {
+    public int getX() {
         return x;
     }
 
-    int getY() {
+    public int getY() {
         return y;
     }
 

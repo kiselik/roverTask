@@ -19,4 +19,9 @@ public class LandCommand implements RoverCommand {
     public void execute() {
         rover.land(position, direction);
     }
+
+    @Override
+    public String toString() {
+        return "Land at ("+position.getX()+", "+position.getY()+") heading "+direction;
+    }
 }

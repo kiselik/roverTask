@@ -6,7 +6,7 @@ public class GroundVisor {
     private Ground ground;
 
 
-    GroundVisor(Ground tmp_ground) {
+    public GroundVisor(Ground tmp_ground) {
         ground = tmp_ground;
     }
 
