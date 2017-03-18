@@ -13,4 +13,9 @@ public class MoveCommand implements RoverCommand {
     public void execute() {
         rover.move();
     }
+
+    @Override
+    public String toString() {
+        return "Rover moved";
+    }
 }
