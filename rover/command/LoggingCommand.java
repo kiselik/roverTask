@@ -9,8 +9,9 @@ public class LoggingCommand implements RoverCommand {
     public static final Logger LOGGER = LoggerFactory.getLogger(LoggingCommand.class);
 
     public LoggingCommand(RoverCommand command) {
-        log_command=command;
+        log_command = command;
     }
+
     @Override
     public void execute() {
         LOGGER.info(log_command.toString());

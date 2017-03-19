@@ -14,7 +14,7 @@ public class Rover implements Moveable, Landable, Liftable, Turnable {
 
     }
 
-   public Point getCurrentPosition() {
+    public Point getCurrentPosition() {
         return current_point;
     }
 
@@ -74,7 +74,7 @@ public class Rover implements Moveable, Landable, Liftable, Turnable {
         try {
             //препятствий нет, приземляемся
             if (!visor.hasObstacles(position)) {
-                current_point=new Point(position);
+                current_point = new Point(position);
                 current_direction = direction;
             }
         } catch (OutOfGroundException e) {

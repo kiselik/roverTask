@@ -1,4 +1,3 @@
-
 package netcracker.intensive.rover.programmable;
 
 import netcracker.intensive.rover.Point;
@@ -6,10 +5,8 @@ import netcracker.intensive.rover.command.*;
 import netcracker.intensive.rover.constants.Direction;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Collection;
 
 public class RoverCommandParser {
     private String path;
@@ -53,12 +50,12 @@ public class RoverCommandParser {
 
         String[] command;
         String tmp;
-        try  {
+        try {
             ///включили буферезированное считывания из файла,если смогли
             BufferedReader reader = new BufferedReader(new FileReader(this.getClass().getResource(path).getFile()));
             //пока файл не пуст и пока текущая строка-не разделитель "==="
             //String tmp=reader.readLine();
-            while ((( tmp=reader.readLine()) != null) && (!tmp.equals(RoverProgram.SEPARATOR))) {
+            while (((tmp = reader.readLine()) != null) && (!tmp.equals(RoverProgram.SEPARATOR))) {
                 command = tmp.split(" ");
                 switch (command[1]) {
                     case "on":
@@ -69,45 +66,50 @@ public class RoverCommandParser {
                         break;
                 }
             }
-            while ((tmp=reader.readLine())!= null) {
+            while ((tmp = reader.readLine()) != null) {
                 if (!tmp.equals(RoverProgram.SEPARATOR)) {
-                    command = tmp.split(" ");
-                    switch (command[0]) {
-                        case "move":
-                            program.memoriseCommand(new MoveCommand(programmable_rover));
-                            break;
-                        case "lift":
-                            program.memoriseCommand(new LiftCommand(programmable_rover));
-                            break;
-                        case "turn":
-                            program.memoriseCommand(new TurnCommand(programmable_rover, getDirection(command[1])));
-                            break;
-                        case "land":
-                            program.memoriseCommand(new LandCommand(programmable_rover, getPoint(command[1], command[2]), getDirection(command[3])));
-                            break;
+                    if ((boolean) program.getSettings().get(RoverProgram.LOG)) {
+                        command = tmp.split(" ");
+                        switch (command[0]) {
+                            case "move":
+                                program.memoriseCommand(new LoggingCommand(new MoveCommand(programmable_rover)));
+                                break;
+                            case "lift":
+                                program.memoriseCommand(new LoggingCommand(new LiftCommand(programmable_rover)));
+                                break;
+                            case "turn":
+                                program.memoriseCommand(new LoggingCommand(new TurnCommand(programmable_rover, getDirection(command[1]))));
+                                break;
+                            case "land":
+                                program.memoriseCommand(new LoggingCommand(new LandCommand(programmable_rover, getPoint(command[1], command[2]), getDirection(command[3]))));
+                                break;
+                        }
+                    } else {
+                        command = tmp.split(" ");
+                        switch (command[0]) {
+                            case "move":
+                                program.memoriseCommand(new MoveCommand(programmable_rover));
+                                break;
+                            case "lift":
+                                program.memoriseCommand(new LiftCommand(programmable_rover));
+                                break;
+                            case "turn":
+                                program.memoriseCommand(new TurnCommand(programmable_rover, getDirection(command[1])));
+                                break;
+                            case "land":
+                                program.memoriseCommand(new LandCommand(programmable_rover, getPoint(command[1], command[2]), getDirection(command[3])));
+                                break;
+
+                        }
                     }
                 }
             }
-            //еслилогирование включено и файл не был изначально пустым,
-            // перепишем найденные комманды через логированные команды
-            if((program.getSettings().size()!=0)&&(boolean)program.getSettings().get(RoverProgram.LOG))
-            {
-                RoverProgram new_log_program=new RoverProgram();
-                for(RoverCommand index: program.getCommands())
-                {
-                     new_log_program.memoriseCommand(new LoggingCommand(index));
-                }
-                program=new_log_program;
-            }
             reader.close();
         } catch (NullPointerException ex) {
-            throw new RoverCommandParserException(ex);
-        } /*catch (FileNotFoundException ex) {
-            throw new RoverCommandParserException(ex);
-        } */catch (IOException ex) {
-            throw new RoverCommandParserException(ex);
+            throw new RoverCommandParserException(ex, "Я не смог найти файл :" + path + " Увы( ");
+        } catch (IOException ex) {
+            throw new RoverCommandParserException(ex, "Впроцессе работы возникли проблемы при чтении файла :" + path + "Увы");
         }
-
         return program;
     }
 

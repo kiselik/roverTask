@@ -18,27 +18,34 @@ public class ProgrammableRover extends Rover implements ProgramFileAware {
     public ProgrammableRover(GroundVisor visor, SimpleRoverStatsModule module) {
         //вызвали конструктор, поставили планетоход на поле
         super(visor);
-        stats_module = new SimpleRoverStatsModule();
+
         program = new RoverProgram();
     }
 
     @Override
     public void executeProgramFile(String path) {
-       /* parser = new RoverCommandParser(this, path);
+        parser = new RoverCommandParser(this, path);
+        program = parser.getProgram();
 
-        parser.doParsFile();
-        for (RoverCommand commands : program.getCommands()) {
-            commands.execute();
-              List<RoverCommand> tmp=(List<RoverCommand>) program.getCommands();
-        for (RoverCommand index:tmp)
-            index.execute();
-        }*/
+        //если статистика включена
+        if ((boolean) program.getSettings().get(RoverProgram.STATS)) {
+            stats_module = new SimpleRoverStatsModule();
+            for (RoverCommand commands : program.getCommands()) {
+                commands.execute();
+                stats_module.registerPosition(this.getCurrentPoint());
+            }
+        } else {
+            for (RoverCommand commands : program.getCommands())
+                commands.execute();
+        }
     }
-
 
     Point getCurrentPoint() {
         return super.getCurrentPosition();
     }
 
+    RoverProgram getSettings() {
+        return program;
+    }
 
 }

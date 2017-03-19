@@ -18,6 +18,7 @@ public class LiftCommand implements RoverCommand {
     public String toString() {
         return "Rover lifted";
     }
+
     @Override
     public boolean equals(Object obj) {
         return this.toString().equals(obj.toString());

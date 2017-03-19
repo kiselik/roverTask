@@ -10,7 +10,7 @@ public class GroundVisor {
         ground = tmp_ground;
     }
 
-    public Ground getGround(){
+    public Ground getGround() {
         return ground;
     }
 
@@ -24,8 +24,8 @@ public class GroundVisor {
     }*/
 
     boolean hasObstacles(Point point) throws OutOfGroundException {
-            GroundCell tmp=ground.getCell(point);
-        if (tmp.getState()==CellState.FREE)
+        GroundCell tmp = ground.getCell(point);
+        if (tmp.getState() == CellState.FREE)
             return false;
         else
             return true;

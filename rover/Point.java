@@ -5,7 +5,7 @@ public class Point {
     private int x;
     private int y;
 
-   public Point() {
+    public Point() {
         x = 0;
         y = 0;
     }
@@ -23,14 +23,14 @@ public class Point {
         return y;
     }
 
-    Point(Point newPoint){
-        x=newPoint.getX();
-        y=newPoint.getY();
+    Point(Point newPoint) {
+        x = newPoint.getX();
+        y = newPoint.getY();
     }
 
-    void setNewPoint(Point newPoint){
-        x=newPoint.getX();
-        y=newPoint.getY();
+    void setNewPoint(Point newPoint) {
+        x = newPoint.getX();
+        y = newPoint.getY();
     }
 
     @Override
@@ -48,12 +48,12 @@ public class Point {
             return false;
     }
 
-    void changeX(int dX){
-        x+=dX;
+    void changeX(int dX) {
+        x += dX;
     }
 
-    void changeY(int dY){
-        y+=dY;
+    void changeY(int dY) {
+        y += dY;
     }
 
     @Override

@@ -19,7 +19,7 @@ public class TurnCommand implements RoverCommand {
 
     @Override
     public String toString() {
-        return "Heading "+direction;
+        return "Heading " + direction;
     }
 
     @Override

@@ -22,8 +22,9 @@ public class LandCommand implements RoverCommand {
 
     @Override
     public String toString() {
-        return "Land at ("+position.getX()+", "+position.getY()+") heading "+direction;
+        return "Land at (" + position.getX() + ", " + position.getY() + ") heading " + direction;
     }
+
     @Override
     public boolean equals(Object obj) {
         return this.toString().equals(obj.toString());
